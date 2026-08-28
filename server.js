@@ -1,22 +1,12 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
-const path = require("path");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// Serve your portfolio files
-app.use(express.static(__dirname));
-
-// Home page
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
-
-// Contact form API
 app.post("/api/contact", async (req, res) => {
   const { name, email, subject, message } = req.body;
 
@@ -54,26 +44,12 @@ ${message}
 
       html: `
         <h3>New Contact Form Submission</h3>
-
         <p><strong>Name:</strong> ${name}</p>
-
-        <p>
-          <strong>Email:</strong>
-          <a href="mailto:${email}">${email}</a>
-        </p>
-
-        <p>
-          <strong>Subject:</strong>
-          ${subject || "N/A"}
-        </p>
-
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Subject:</strong> ${subject || "N/A"}</p>
         <hr>
-
         <p><strong>Message:</strong></p>
-
-        <p style="white-space: pre-wrap;">
-          ${message}
-        </p>
+        <p>${message}</p>
       `
     };
 
@@ -85,7 +61,6 @@ ${message}
     });
 
   } catch (error) {
-
     console.error("Email error:", error);
 
     res.status(500).json({
@@ -94,8 +69,5 @@ ${message}
     });
   }
 });
-
-// IMPORTANT:
-// Do NOT use app.listen() on Vercel.
 
 module.exports = app;

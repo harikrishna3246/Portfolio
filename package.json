@@ -1,0 +1,23 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Software Developer Portfolio - Siva Subramani Bharathi Hari Krishna",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "software-developer",
+    "full-stack",
+    "javascript"
+  ],
+  "author": "Siva Subramani Bharathi Hari Krishna",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.13"
+  }
+}
